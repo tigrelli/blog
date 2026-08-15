@@ -3,17 +3,19 @@
   새 글을 발행할 때: 이 파일을 blog/posts/YYYY-MM-DD-영문요약.html 로 복사한 뒤
   아래 [ ] 표시된 부분을 실제 내용으로 채우고, blog/posts.json에도 같은 slug로 메타데이터를 추가한다.
   카테고리 값은 반드시 blog/categories.json에 있는 값 중 하나를 그대로 사용한다.
+  canonical과 JSON-LD의 URL, sitemap.xml도 함께 채워/추가한다.
 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[글 제목] | 블로그 | 정태희</title>
+<title>[글 제목] | 블로그</title>
 <meta name="description" content="[글 요약 1~2문장]">
-<meta property="og:title" content="[글 제목] | 블로그 | 정태희">
+<meta property="og:title" content="[글 제목] | 블로그">
 <meta property="og:description" content="[글 요약 1~2문장]">
 <meta property="og:type" content="article">
+<link rel="canonical" href="https://tigrelli.com/blog/posts/[slug].html">
 <link rel="icon" href="/assets/images/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
@@ -24,6 +26,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "[글 제목]",
+  "description": "[글 요약 1~2문장]",
+  "datePublished": "[YYYY-MM-DD]",
+  "dateModified": "[YYYY-MM-DD]",
+  "author": { "@type": "Person", "name": "정태희", "url": "https://tigrelli.com/about.html" },
+  "publisher": { "@type": "Person", "name": "정태희" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://tigrelli.com/blog/posts/[slug].html" },
+  "keywords": "[태그1], [태그2]"
+}
+</script>
 </head>
 <body class="blog-theme">
 <div id="site-header"></div>
@@ -65,8 +81,6 @@
       <li class="chip">#[태그1]</li>
       <li class="chip">#[태그2]</li>
     </ul>
-
-    <!-- 댓글 영역: Phase 3(3-9)에서 data-post-slug 댓글 컴포넌트 삽입 예정 -->
 
     <div id="detail-prevnext"></div>
   </div>
