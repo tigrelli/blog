@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code와 함께, 코드 한 줄 없이 홈페이지를 만든 기록 | 블로그 | 정태희</title>
+<meta name="description" content="빌드 도구도, 프레임워크도 없이 순수 HTML/CSS/JS로 포트폴리오와 블로그를 만들고 있습니다. Claude Code에게 매번 체크리스트 항목 하나씩만 맡기는 방식으로 작업하면서 느낀 점을 기록합니다.">
+<meta property="og:title" content="Claude Code와 함께, 코드 한 줄 없이 홈페이지를 만든 기록 | 블로그 | 정태희">
+<meta property="og:description" content="빌드 도구도, 프레임워크도 없이 순수 HTML/CSS/JS로 포트폴리오와 블로그를 만들고 있습니다. Claude Code에게 매번 체크리스트 항목 하나씩만 맡기는 방식으로 작업하면서 느낀 점을 기록합니다.">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon/favicon-48x48.png">
+<link rel="apple-touch-icon" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="blog-theme">
+<div id="site-header"></div>
+
+<main>
+  <div class="container">
+    <p class="detail-breadcrumb"><a href="/blog/">블로그</a> &gt; <a href="/blog/list.html">글 목록</a> &gt; Claude Code와 함께, 코드 한 줄 없이 홈페이지를 만든 기록</p>
+
+    <section class="section detail-hero">
+      <div class="post-card-meta">
+        <span class="post-category">개발일지</span>
+        <span class="post-card-readtime">4분 읽기</span>
+      </div>
+      <h1 class="page-title">Claude Code와 함께, 코드 한 줄 없이 홈페이지를 만든 기록</h1>
+
+      <div class="post-byline">
+        <span><strong>정태희</strong> &middot; 2026-08-15</span>
+        <button type="button" class="post-share-btn">공유하기</button>
+      </div>
+    </section>
+
+    <article class="section post-body">
+      <p>이 포트폴리오와 블로그는 빌드 도구도, 프레임워크도 없이 순수 HTML/CSS/JS로 만들어지고 있습니다. 직접 코드를 짜지는 않았습니다 &mdash; 대신 Claude Code에게 매번 원하는 내용과 구조를 설명하고, 결과물을 확인하며 다음 요청을 이어가는 방식으로 처음부터 지금까지 만들어왔습니다.</p>
+
+      <p>가장 신경 쓴 부분은 한 번에 너무 많은 걸 맡기지 않는 것이었습니다. 저장소에 <code>진행현황.md</code>라는 체크리스트 파일을 두고, 한 번의 요청에는 그 안의 항목 하나만 처리하도록 규칙을 정했습니다. 항목이 끝나면 체크박스를 갱신하고 무엇을 왜 그렇게 결정했는지 한 줄로 기록해두는 식입니다.</p>
+
+      <blockquote class="post-quote">요청 하나, 체크리스트 항목 하나 &mdash; 이 원칙 덕분에 세션이 끊기거나 다른 날 다시 시작해도, 다음 세션이 기록만 보고 맥락을 그대로 이어받을 수 있었습니다.</blockquote>
+
+      <p>디자인도 처음부터 전부 정해놓고 시작하지 않았습니다. 포트폴리오는 아이보리 배경에 코랄 포인트 컬러로 시작했는데, 블로그는 같은 구조와 컴포넌트를 재사용하면서도 인디고 포인트 컬러와 스톤 톤 배경을 별도로 입혔습니다. 색상 값 몇 개를 변수로 바꿔치기하는 것만으로 같은 카드·칩·헤더 구조가 전혀 다른 톤으로 보이는 걸 보면서, 처음부터 완벽한 디자인 시스템을 짜기보다 필요할 때마다 컴포넌트를 늘려가는 지금 방식이 오히려 잘 맞는다고 느꼈습니다.</p>
+
+      <p>이 글은 그 파이프라인으로 처음 발행하는 실제 글입니다. 카테고리 필터, 검색, 목록 → 상세 연결까지 전부 이 글로 확인했습니다. 앞으로는 AI 관련 이야기와 개발일지, 그리고 개인적으로 AI와 이것저것 해보는 기록을 이 공간에 하나씩 남겨볼 생각입니다.</p>
+    </article>
+
+    <ul class="chip-row" style="margin-bottom:40px;">
+      <li class="chip">#Claude Code</li>
+      <li class="chip">#정적사이트</li>
+      <li class="chip">#AI 협업</li>
+    </ul>
+
+    <!-- 댓글 영역: Phase 3(3-9)에서 data-post-slug 댓글 컴포넌트 삽입 예정 -->
+
+    <div id="detail-prevnext"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/blog-layout.js" defer></script>
+<script src="/assets/js/blog-posts.js" defer></script>
+<script src="/assets/js/blog-postnav.js" defer></script>
+</body>
+</html>

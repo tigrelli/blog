@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "2026-08-15-building-this-site-with-claude-code",
+    "title": "Claude Code와 함께, 코드 한 줄 없이 홈페이지를 만든 기록",
+    "date": "2026-08-15",
+    "category": "개발일지",
+    "tags": ["Claude Code", "정적사이트", "AI 협업"],
+    "summary": "빌드 도구도, 프레임워크도 없이 순수 HTML/CSS/JS로 포트폴리오와 블로그를 만들고 있습니다. Claude Code에게 매번 체크리스트 항목 하나씩만 맡기는 방식으로 작업하면서 느낀 점을 기록합니다.",
+    "thumbnail": "",
+    "readTime": "4분"
+  }
+]

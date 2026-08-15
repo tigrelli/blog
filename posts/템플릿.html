@@ -1,0 +1,81 @@
+<!--
+  블로그 글 상세 템플릿
+  새 글을 발행할 때: 이 파일을 blog/posts/YYYY-MM-DD-영문요약.html 로 복사한 뒤
+  아래 [ ] 표시된 부분을 실제 내용으로 채우고, blog/posts.json에도 같은 slug로 메타데이터를 추가한다.
+  카테고리 값은 반드시 blog/categories.json에 있는 값 중 하나를 그대로 사용한다.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[글 제목] | 블로그 | 정태희</title>
+<meta name="description" content="[글 요약 1~2문장]">
+<meta property="og:title" content="[글 제목] | 블로그 | 정태희">
+<meta property="og:description" content="[글 요약 1~2문장]">
+<meta property="og:type" content="article">
+<link rel="icon" href="/assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon/favicon-48x48.png">
+<link rel="apple-touch-icon" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="blog-theme">
+<div id="site-header"></div>
+
+<main>
+  <div class="container">
+    <p class="detail-breadcrumb"><a href="/blog/">블로그</a> &gt; <a href="/blog/list.html">글 목록</a> &gt; [글 제목]</p>
+
+    <section class="section detail-hero">
+      <div class="post-card-meta">
+        <span class="post-category">[카테고리]</span>
+        <span class="post-card-readtime">[N분] 읽기</span>
+      </div>
+      <h1 class="page-title">[글 제목]</h1>
+
+      <div class="post-byline">
+        <span><strong>정태희</strong> &middot; [YYYY-MM-DD]</span>
+        <button type="button" class="post-share-btn">공유하기</button>
+      </div>
+
+      <!-- 커버 이미지가 있으면 아래 주석을 해제하고 media-placeholder-cover는 삭제 -->
+      <!--
+      <div class="detail-cover">
+        <img src="/assets/images/blog/[slug]-cover.webp" alt="[글 제목]" class="detail-cover-img">
+      </div>
+      -->
+    </section>
+
+    <article class="section post-body">
+      <p>[본문 첫 문단]</p>
+      <p>[본문 문단]</p>
+
+      <blockquote class="post-quote">[강조하고 싶은 인용/한 줄 요약]</blockquote>
+
+      <p>[본문 문단]</p>
+    </article>
+
+    <ul class="chip-row" style="margin-bottom:40px;">
+      <li class="chip">#[태그1]</li>
+      <li class="chip">#[태그2]</li>
+    </ul>
+
+    <!-- 댓글 영역: Phase 3(3-9)에서 data-post-slug 댓글 컴포넌트 삽입 예정 -->
+
+    <div id="detail-prevnext"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/blog-layout.js" defer></script>
+<script src="/assets/js/blog-posts.js" defer></script>
+<script src="/assets/js/blog-postnav.js" defer></script>
+</body>
+</html>
