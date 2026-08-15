@@ -1,0 +1,13 @@
+# 환경변수 / 키
+.env
+.env.*
+*.key
+*secret*
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.swp
+
+# WSL 다운로드 메타데이터
+*:Zone.Identifier
