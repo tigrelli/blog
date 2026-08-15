@@ -1299,7 +1299,7 @@ body.blog-theme .site-header {
 }
 
 body.blog-theme {
-  background-image: url('/blog/assets/images/blog-tigrelli.webp');
+  background-image: url('/assets/images/blog-tigrelli.webp');
   background-repeat: no-repeat;
   background-position: left 24px bottom 0;
   background-size: 200px auto;
@@ -1312,7 +1312,7 @@ body.blog-theme {
   }
 
   body.blog-theme .site-footer {
-    background-image: url('/blog/assets/images/blog-tigrelli.webp');
+    background-image: url('/assets/images/blog-tigrelli.webp');
     background-repeat: no-repeat;
     background-position: left 16px bottom 0;
     background-size: 120px auto;
