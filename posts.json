@@ -6,7 +6,7 @@
     "category": "개발일지",
     "tags": ["TFT", "티어리스트", "데이터분석", "opgg", "알고리즘", "상관관계분석", "사이드프로젝트", "개발일지", "회고", "MCP"],
     "summary": "op.gg MCP 데이터로 만든 자체 티어 스코어링 알고리즘이 이상한 결과를 냈습니다. 통계 보정으로 고치려다 실패하고, 결국 'op.gg가 진짜로 뭘 채점하고 있었는지'를 다시 물어보게 된 하루의 기록.",
-    "thumbnail": "/assets/images/2026-08-18-tft-tier-scoring-pickrate-cover.png",
+    "thumbnail": "/assets/images/2026-08-18-tft-tier-scoring-pickrate-cover.webp",
     "readTime": "8분"
   }
 ]
