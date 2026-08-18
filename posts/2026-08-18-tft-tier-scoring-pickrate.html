@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>픽률 0.099%짜리 조합이 최상위 등급을 받았다 — 티어 스코어링을 다시 들여다본 이야기 | 블로그</title>
+<meta name="description" content="op.gg MCP 데이터로 만든 자체 티어 스코어링 알고리즘이 이상한 결과를 냈습니다. 통계 보정으로 고치려다 실패하고, 결국 'op.gg가 진짜로 뭘 채점하고 있었는지'를 다시 물어보게 된 하루의 기록.">
+<meta property="og:title" content="티어 스코어링을 다시 들여다본 이야기 | 블로그">
+<meta property="og:description" content="op.gg MCP 데이터로 만든 자체 티어 스코어링 알고리즘이 이상한 결과를 냈습니다. 통계 보정으로 고치려다 실패하고, 결국 'op.gg가 진짜로 뭘 채점하고 있었는지'를 다시 물어보게 된 하루의 기록.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://blog.tigrelli.com/posts/2026-08-18-tft-tier-scoring-pickrate.html">
+<link rel="icon" href="/assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon/favicon-48x48.png">
+<link rel="apple-touch-icon" href="/assets/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "티어 스코어링을 다시 들여다본 이야기",
+  "description": "op.gg MCP 데이터로 만든 자체 티어 스코어링 알고리즘이 이상한 결과를 냈습니다. 통계 보정으로 고치려다 실패하고, 결국 'op.gg가 진짜로 뭘 채점하고 있었는지'를 다시 물어보게 된 하루의 기록.",
+  "datePublished": "2026-08-18",
+  "dateModified": "2026-08-18",
+  "author": { "@type": "Person", "name": "정태희", "url": "https://tigrelli.com/about.html" },
+  "publisher": { "@type": "Person", "name": "정태희" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://blog.tigrelli.com/posts/2026-08-18-tft-tier-scoring-pickrate.html" },
+  "keywords": "Claude Code, AI를 활용한 개발,TFT, 티어리스트, 데이터분석, opgg, 알고리즘, 상관관계분석"
+}
+</script>
+</head>
+<body class="blog-theme">
+<div id="site-header"></div>
+
+<main>
+  <div class="container">
+    <p class="detail-breadcrumb"><a href="/">블로그</a> &gt; <a href="/list.html">글 목록</a> &gt; 티어 스코어링을 다시 들여다본 이야기</p>
+
+    <section class="section detail-hero">
+      <div class="post-card-meta">
+        <span class="post-category">개발일지</span>
+        <span class="post-card-readtime">8분 읽기</span>
+      </div>
+      <h1 class="page-title"> 티어 스코어링을 다시 들여다본 이야기</h1>
+
+      <div class="post-byline">
+        <span><strong>tigrelli</strong> &middot; 2026-08-18</span>
+        <button type="button" class="post-share-btn">공유하기</button>
+      </div>
+
+      <!--<div class="detail-cover">
+        <img src="/assets/images/2026-08-18-tft-tier-scoring-pickrate-cover.png" alt="티어 스코어링을 다시 들여다본 이야기 인포그래픽" class="detail-cover-img">
+      </div>-->
+    </section>
+
+    <article class="section post-body">
+      <p>요즘 저는 <strong><a href="https://tft-hideout.suraholic.workers.dev/" target="_blank">Hideout</a></strong> 이라는 개인 프로젝트를 혼자 기획&middot;개발하고 있어요. 
+        <br>TFT(전략적 팀 전투) 게임에서 지금 뭐가 강한지, 어떤 조합을 써야 하는지를 매번 커뮤니티랑 영상을 뒤지지 않고 바로 찾아볼 수 있게 만드는 서비스예요. 
+        티어리스트&middot;조합&middot;아이템&middot;증강체를 보여주는 웹사이트와, 궁금한 걸 바로 물어볼 수 있는 챗봇(RAG) 두 갈래로 구성돼 있고, 기획부터 설계&middot;개발&middot;배포까지 Claude Code와 페어프로그래밍으로 진행하고 있어요. 
+        이 글은 그중에서도 &quot;조합 등급(OP/S/A&middot;&middot;&middot;)을 어떻게 매길까&quot;라는 알고리즘 하나를 붙잡고 하루 종일 뜯어본 기록입니다.</p>
+
+      <h2>처음 설계할 때 건너뛰었던 것</h2>
+
+      <p>이 기능을 처음 만들 때, 저는 API 명세서를 처음부터 끝까지 정독하지 않았어요. 필요한 것부터 빠르게 확인해서 단순한 방식으로 출발했습니다. op.gg MCP가 애초에 top-10 조합만 준다는 건 처음부터 알고 있었는데, &quot;이미 성적으로 걸러진 10개 안에서는 순위만 매기면 되겠지&quot; 싶어서 평균등수와 승률, 이 두 축의 순위를 더하는 &quot;순위합&quot; 방식을 단순하게 썼어요. op.gg MCP에서 픽률도 함께 받아오고는 있었지만, 픽률은 목록을 정렬하거나 필터링하는 데만 쓰였을 뿐 정작 이 등급 계산식에는 들어가 있지 않았습니다.</p>
+
+      <p>그러다 오늘, 챗봇 QA를 진행하다가 문득 &quot;op.gg에서 실제로 더 받을 수 있는 데이터가 있나?&quot;라는 생각이 들었어요. MCP 명세를 다시 열어보니 예상보다 훨씬 많더라고요. 4등 안에 들 확률, 조합별 진짜 표본 게임수, 시너지 구성, 그리고 op.gg가 자체적으로 매기는 종합 점수까지 ...
+        <br>전부 그동안 한 번도 제대로 확인하지 않고 있던 필드였습니다.</p>
+
+      <p>이 전체 명세를 다시 훑은 게, 사실 오늘 하루를 뒤집어놓은 시작점이었어요. 필드를 확인하다 자연스럽게 '어, 그러면 지금 등급 계산식은 완전 엉터리잖아...' 
+      <br>MCP는 상위 TOP 10 데이터를 보내주고, op.gg 웹 사이트와 다른 데이터이기 때문에 간단한 계산으로 티어를 정리하자 생각했던거죠. 
+      <br>지금 생각해도 너무 안일했네요. 처음부터 다시 시작하자라는 생각으로 명세 항목을 다시 정의하고 가설을 세우고 데이터 검증을 시작했죠</p>
+
+      <h2>다른 제안을 하다</h2>
+
+      <p>평균등수 40% + top4Rate 35% + 승률 15% + 픽률(제곱근으로 완화) 10%를 섞어 자체 점수를 만들고, op.gg의 opScore도 완전히 버리지 말고 50% 비중으로 다시 섞고, 티어 경계는 고정된 퍼센타일이 아니라 점수 &quot;간격(gap)&quot;을 보고 자연스럽게 나누자.
+      실제 데이터에 대입해보니 이전보다 훨씬 나았어요. op.gg 원본과 10개 중 4개가 일치했고, 특히 상위 두 조합(OP 등급)은 정확히 맞았습니다.
+      그런데 여기서 흥미로운 반전이 나왔어요. opScore를 빼고 지표 4개만 순수하게 써봤더니, 니치 조합 문제가 그대로 재현된 거예요. 즉 이 방식이 잘 맞았던 진짜 이유는 &quot;공식이 똑똑해서&quot;가 아니라 &quot;이미 op.gg의 답을 절반 베껴 썼기 때문&quot;이었습니다. 애초에 op.gg 배지를 못 믿어서 자체 계산으로 갈아탔던 프로젝트인데, 다시 op.gg에 기대는 셈이라 마음이 좀 복잡해지더라고요.</p>
+
+      <p>&quot;그럼 op.gg의 점수, 진짜 믿어도 될까?&quot;
+      <br>여기서 조사 방향을 완전히 바꾼 질문이 하나 나왔어요.</p>
+
+      <p><strong>&quot;opScore를 믿을 수 없다는 전제를 빼고 검토해보면 어떨까요?&quot;</strong></p>
+
+      <p>그래서 상관관계 분석을 돌려봤습니다. op.gg의 opScore가 실제 성적 지표(평균등수&middot;승률&middot;top4율)랑 얼마나 관련 있는지 확인해보려고요.
+      결과가 예상을 완전히 뒤집었어요. opScore는 성적 지표와는 거의 무관했습니다(상관계수 -0.2대). 그런데 픽률과는 상관계수 0.984 &mdash; 사실상 거의 같은 수치였어요.
+      즉 op.gg의 &quot;종합 점수&quot;라는 게 사실상 픽률의 대리 지표였던 거예요. op.gg는 이미 top-10을 &quot;성적으로 걸러진 조합들&quot;로 뽑아준 다음, 그 안에서는 &quot;얼마나 대중적이고 재현 가능한가&quot;로 등급을 나누고 있었던 셈이죠.
+      이 발견을 반영해서 opScore만 쓰고, 티어 경계는 우리 방식(간격 기반)으로 다시 나눠봤더니 &mdash; op.gg 원본과 10개 중 10개가 완벽히 일치했습니다. 오히려 성능 지표를 섞을수록(30%, 50%, 70%) 일치율이 떨어졌어요. opScore 하나만 믿는 게 가장 정확했던 거예요.</p>
+
+      <h2>결국 필요했던 건 좋은 질문 하나였다.</h2>
+
+      <p>마지막으로 나온 질문이 이번 조사에서 가장 중요한 전환점이었어요.</p>
+
+      <p><strong>&quot;실제 어느 덱이 강한지, 우리가 받는 데이터로는 계산에 한계가 있다고 봐야겠지요?&quot;</strong></p>
+
+      <p>맞는 말이었습니다. 정리해보면 이래요.
+      <br>op.gg MCP는 이미 top-10으로 걸러진 데이터만 줘요. 그 밖에 더 강한 조합이 있어도 알 방법이 없습니다. 관찰 데이터라 인과관계도 못 갈라요. &quot;조합이 세서 이겼다&quot;와 &quot;이기고 있어서 그 조합을 완성했다&quot;를 구분할 수가 없거든요. 랭크 구간이나 상대 조합 같은 맥락 정보도 전혀 없고요. &quot;강함&quot;이라는 개념 자체가 다차원적이라, 어떤 방식으로 하나의 숫자로 압축하든 손실이 생길 수밖에 없습니다. 심지어 비교 기준으로 삼은 op.gg의 opScore조차 계산 방식이 공개 안 된 블랙박스고요.
+      그래서 이번 조사의 진짜 결론은 알고리즘 공식 하나가 아니라, 목표 자체를 다시 정의한 거였어요. &quot;객관적으로 가장 강한 조합을 찾는다&quot;가 아니라, &quot;op.gg가 우리에게 준 top-10 안에서, op.gg 자신의 종합 점수(사실상 대중성과 신뢰도를 반영하는 opScore)를 기준으로, 그날의 자연스러운 격차를 찾아 우리가 직접 재구간화한 상대적 티어&quot;로요.</p>
+
+      <h2>최종적으로 정리한 것</h2>
+
+      <p>opScore 값을 저장하고, 같은 배치의 10개 조합 안에서 0~100으로 Min-Max 정규화한 뒤 내림차순 정렬합니다. 인접 순위 간 점수 격차를 계산해서, 평균 격차의 1.3배를 넘는 지점만 &quot;진짜 경계&quot;로 인정하고요. 고정된 5단계를 강제로 나누던 방식은 버리고, 그날 분포에 따라 3~5단계로 유동적으로 나뉘도록 했습니다. OP부터 순서대로 라벨을 붙이고, 혹시 opScore 자체가 없는 조합(op.gg 응답 결측)이 있으면 무조건 &quot;C&quot;로 고정해서 이상한 값이 상위 등급으로 새는 것도 막아뒀어요.</p>
+
+      <p>실제 op.gg 라이브 데이터로 검증해보니, 오늘자 10개 조합 중 op.gg 원본 라벨과 10개 전부 정확히 일치했습니다. 고정 5단계를 강제하지 않았는데도 자연스럽게 3단계로만 갈린 것까지 원본과 그대로 맞아떨어졌고요.
+      다만 이 임계값(1.3배)은 하루치 스냅샷(같은 배치 10개) 하나로 찾아낸 값이라 과적합 위험이 커요. 같은 날 다시 돌려봐도 10/10이 나오긴 했지만, 이건 어디까지나 &quot;같은 날 다시 확인&quot;한 것일 뿐 다른 날짜&middot;다른 패치 스냅샷으로는 아직 검증하지 못했거든요. 그래서 지금은 이 상태로 잠정 배포하고 며칠간 배치가 돌 때마다 일치율을 관찰중입니다.</p>
+
+      <h2>돌아보며</h2>
+
+      <p>이미 갖고 있는 데이터를 제대로 파악하지 못하고 엉뚱한데서 계속 삽질한 하루였네요.
+      <br>&quot;어떤 계산식이 정답에 가까운가&quot;에서 &quot;애초에 이 데이터로 답할 수 있는 질문이 뭔가&quot;... 
+      <br>완벽한 알고리즘을 찾는 대신, 우리가 지금 뭘 측정하고 있는지를 솔직하게 정의하는 쪽으로 방향을 잡은 하루였습니다.</p>
+
+      <p>처음엔 필요한 것만 빠르게 확인해서 단순한 방식으로 서비스부터 열었고, API 명세 전체를 다시 짚어보는 건 뒤로 미뤄뒀었죠. 그게 잘못됐다는 뜻은 아니에요 &mdash; 오히려 빠르게 출발했기 때문에 실제 데이터로 검증할 기회가 먼저 생긴 거니까요. 다만 언젠가는 &quot;지금 내가 안 보고 넘어간 부분이 없나&quot;를 다시 펼쳐볼 타이밍이 필요하고, 오늘이 그 타이밍이었던 것 같습니다.</p>
+    </article>
+
+    <ul class="chip-row" style="margin-bottom:40px;">
+      <li class="chip">#TFT</li>
+      <li class="chip">#티어리스트</li>
+      <li class="chip">#데이터분석</li>
+      <li class="chip">#opgg</li>
+      <li class="chip">#회고</li>
+    </ul>
+
+    <div id="detail-prevnext"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/js/blog-layout.js" defer></script>
+<script src="/assets/js/blog-posts.js" defer></script>
+<script src="/assets/js/blog-postnav.js" defer></script>
+</body>
+</html>
