@@ -733,6 +733,13 @@ a.plan-point-title.doc-link:hover {
   height: auto;
 }
 
+.detail-cover-caption {
+  margin: 6px 2px 0;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
 .detail-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
