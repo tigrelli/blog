@@ -1,5 +1,15 @@
 [
   {
+    "slug": "2026-08-20-ai-product-pm-vs-pm-for-ai",
+    "title": "AI Product PM vs Product PM for AI",
+    "date": "2026-08-20",
+    "category": "AI 이야기",
+    "tags": ["AIProductManager", "PM", "AI리터러시", "프로덕트매니지먼트", "eval"],
+    "summary": "AI Product PM과 Product PM for AI는 같은 PM이라는 이름 아래 있지만 관점과 설계 방식, 요구되는 역량까지 다르다. AI를 제품의 핵심으로 다루는 역할과 도구로 활용하는 역할의 차이를 정리했다.",
+    "thumbnail": "/assets/images/2026-08-20-ai-product-pm-vs-pm-for-ai-cover.webp",
+    "readTime": "13분"
+  },
+  {
     "slug": "2026-08-18-tft-tier-scoring-pickrate",
     "title": "티어 스코어링을 다시 들여다본 이야기",
     "date": "2026-08-18",

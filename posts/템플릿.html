@@ -4,10 +4,18 @@
   아래 [ ] 표시된 부분을 실제 내용으로 채우고, blog/posts.json에도 같은 slug로 메타데이터를 추가한다.
   카테고리 값은 반드시 blog/categories.json에 있는 값 중 하나를 그대로 사용한다.
   canonical과 JSON-LD의 URL, sitemap.xml도 함께 채워/추가한다.
+  아래 Google Tag Manager 스크립트(head 상단)와 noscript(body 시작 직후)는 모든 페이지에 필수이므로 삭제하지 말고 그대로 유지한다.
 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4PW649N');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[글 제목] | 블로그</title>
@@ -42,6 +50,10 @@
 </script>
 </head>
 <body class="blog-theme">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4PW649N"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div id="site-header"></div>
 
 <main>
