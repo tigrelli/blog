@@ -1,5 +1,15 @@
 [
   {
+    "slug": "2026-08-21-data-analysis-for-pm",
+    "title": "PM/PO를 위한 데이터 분석: 데이터를 결정으로 연결하는 법",
+    "date": "2026-08-21",
+    "category": "AI 이야기",
+    "tags": ["데이터분석", "PM", "PO", "의사결정", "가설검증", "KPI"],
+    "summary": "PM/PO에게 데이터 분석은 숫자를 계산하는 기술이 아니라 무엇을 결정해야 하는지 정의하고 근거를 만드는 규율이다. 질문에서 결정까지 이어지는 분석의 순환과, 데이터 사이언스와의 차이를 정리했다.",
+    "thumbnail": "/assets/images/2026-08-21-data-analysis-for-pm-cover.webp",
+    "readTime": "10분"
+  },
+  {
     "slug": "2026-08-20-ai-product-pm-vs-pm-for-ai",
     "title": "AI Product PM vs Product PM for AI",
     "date": "2026-08-20",
