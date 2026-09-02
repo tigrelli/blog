@@ -1,5 +1,25 @@
 [
   {
+    "slug": "2026-09-02-work-self-reflection-by-claude",
+    "title": "일을 대하는 나: 10문 10답 (by Claude)",
+    "date": "2026-09-02",
+    "category": "일상 이야기",
+    "tags": ["자기성찰", "10문10답", "일하는방식", "회고", "Claude"],
+    "summary": "쉬어가는 시간 동안 Claude가 던진 10가지 질문에 답하며 내가 일을 대하는 태도를 돌아본 자기 성찰 기록.",
+    "thumbnail": "/assets/images/2026-09-02-work-self-reflection-by-claude-cover.webp",
+    "readTime": "4분"
+  },
+  {
+    "slug": "2026-09-02-work-self-reflection-by-chatgpt",
+    "title": "일을 대하는 나: 10문 10답 (by ChatGPT)",
+    "date": "2026-09-02",
+    "category": "일상 이야기",
+    "tags": ["자기성찰", "10문10답", "일하는방식", "회고", "ChatGPT"],
+    "summary": "쉬어가는 시간 동안 ChatGPT가 던진 10가지 질문에 답하며 내가 일을 대하는 태도를 돌아본 자기 성찰 기록.",
+    "thumbnail": "/assets/images/2026-09-02-work-self-reflection-by-chatgpt-cover.webp",
+    "readTime": "4분"
+  },
+  {
     "slug": "2026-08-27-michelin-chefs-passion",
     "title": "미슐랭 셰프들에게서 다시 배운 열정, 어서와 한국은 처음이지",
     "date": "2026-08-27",
