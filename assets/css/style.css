@@ -1597,7 +1597,8 @@ body.blog-theme {
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-size: 0.875rem;
   font-style: italic;
-  color: var(--ink-soft);
+  font-weight: 700;
+  color: #000;
   line-height: 1.7;
   word-break: keep-all;
 }

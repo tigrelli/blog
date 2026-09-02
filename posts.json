@@ -1,5 +1,15 @@
 [
   {
+    "slug": "2026-09-02-agentic-ai-pm-questions",
+    "title": "AI는 답을 한다. 하지만 무엇을 물을 것인지는 우리가 결정해야 한다.",
+    "date": "2026-09-02",
+    "category": "AI 이야기",
+    "tags": ["AgenticAI", "PM", "AI리터러시", "의사결정", "HumanInTheLoop", "자율성"],
+    "summary": "Agentic AI가 실행의 상당 부분을 대신하게 되면서 PM에게 필요한 역량은 AI 사용법이 아니라 좋은 질문을 만드는 능력으로 이동하고 있다. 자율성과 행위성, 권한 설계, AI 리터러시까지 정리했다.",
+    "thumbnail": "/assets/images/2026-09-02-agentic-ai-pm-questions-cover.webp",
+    "readTime": "12분"
+  },
+  {
     "slug": "2026-09-02-work-self-reflection-by-claude",
     "title": "일을 대하는 나: 10문 10답 (by Claude)",
     "date": "2026-09-02",
