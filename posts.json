@@ -1,5 +1,15 @@
 [
   {
+    "slug": "2026-10-08-vibe-coding",
+    "title": "바이브 코딩, 누구나 개발할 수 있는 시대가 왔을까?",
+    "date": "2026-10-08",
+    "category": "생각",
+    "tags": ["바이브코딩", "VibeCoding", "AI코딩", "비개발자", "PM", "1인창업"],
+    "summary": "개발을 몰라도 서비스를 만들고, 고객을 확보하고, 매출까지 발생시키는 시대. AI는 어디까지 개발자의 역할을 대신할 수 있을까?",
+    "thumbnail": "/assets/images/2026-10-08-vibe-coding-cover.webp",
+    "readTime": "15분"
+  },
+  {
     "slug": "2026-09-02-agentic-ai-pm-questions",
     "title": "AI는 답을 한다. 하지만 무엇을 물을 것인지는 우리가 결정해야 한다.",
     "date": "2026-09-02",

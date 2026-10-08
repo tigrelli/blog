@@ -1589,6 +1589,12 @@ body.blog-theme .nav-link-current::after {
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: var(--ink);
+  word-break: keep-all;
+}
+
+.post-body li {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .post-quote {
