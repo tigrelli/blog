@@ -4,5 +4,9 @@
    - `<head>` 최상단의 Google Tag Manager `<script>`와 `<body>` 시작 직후의 `<noscript>` 태그(GTM-T4PW649N)는 템플릿에 이미 포함되어 있으니 절대 지우지 않는다. 템플릿을 거치지 않고 새 HTML을 직접 작성하는 경우에도 이 두 스니펫을 반드시 넣는다.
 2. `posts.json`에 같은 slug로 메타데이터(title, date, category, tags, summary, thumbnail, readTime)를 추가한다.
    - `category`는 `categories.json`에 있는 값 중 하나를 그대로 사용한다.
-3. canonical 링크와 JSON-LD의 URL을 실제 slug에 맞게 채운다.
+3. canonical 링크, og:url, og:image, JSON-LD의 URL을 실제 slug에 맞게 채운다.
 4. 커버/썸네일 이미지가 아직 없으면 임시 이미지(`/assets/images/blog-tigrelli.webp` 등)로 자리만 잡고, 실제 이미지가 준비되면 교체한다.
+5. 마지막으로 저장소 루트에서 `python3 scripts/build_seo.py`를 실행한다.
+   - `sitemap.xml` 재생성, `index.html`/`list.html`의 정적 글 카드 갱신, 각 글의 og:url/og:image를 posts.json 기준으로 맞춘다.
+   - 홈/목록의 카드는 JS로 그려지기 때문에, 이 단계를 빠뜨리면 JS를 실행하지 않는 크롤러와 AI 웹 도구가 새 글 링크를 찾지 못한다.
+   - 카드 마크업을 바꿀 때는 `assets/js/blog-posts.js`의 `renderPostCard`와 스크립트의 `render_post_card`를 함께 수정한다.

@@ -3,7 +3,7 @@
   새 글을 발행할 때: 이 파일을 blog/posts/YYYY-MM-DD-영문요약.html 로 복사한 뒤
   아래 [ ] 표시된 부분을 실제 내용으로 채우고, blog/posts.json에도 같은 slug로 메타데이터를 추가한다.
   카테고리 값은 반드시 blog/categories.json에 있는 값 중 하나를 그대로 사용한다.
-  canonical과 JSON-LD의 URL, sitemap.xml도 함께 채워/추가한다.
+  canonical, og:url, og:image, JSON-LD의 URL을 채우고, 마지막에 `python3 scripts/build_seo.py`를 실행해 sitemap.xml과 홈/목록 정적 카드를 갱신한다.
   아래 Google Tag Manager 스크립트(head 상단)와 noscript(body 시작 직후)는 모든 페이지에 필수이므로 삭제하지 말고 그대로 유지한다.
 -->
 <!DOCTYPE html>
@@ -23,6 +23,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:title" content="[글 제목] | 블로그">
 <meta property="og:description" content="[글 요약 1~2문장]">
 <meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.tigrelli.com/posts/[slug].html">
+<meta property="og:image" content="https://blog.tigrelli.com/assets/images/[slug]-cover.webp">
 <link rel="canonical" href="https://blog.tigrelli.com/posts/[slug].html">
 <link rel="icon" href="/assets/images/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
