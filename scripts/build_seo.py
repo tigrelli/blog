@@ -5,6 +5,7 @@
 - index.html(최신 글 4개) / list.html(전체 글)에 글 카드를 정적 HTML로 미리 렌더링
   (JS가 로드되면 같은 마크업으로 다시 그리므로 화면은 동일하다)
 - 각 글의 og:url / og:image 메타 태그를 posts.json 값에 맞춘다
+- partials/의 공통 스니펫(GTM, 네이버 사이트 인증 등)을 모든 페이지에 넣는다
 
 새 글을 posts.json에 추가한 뒤 저장소 루트에서 `python3 scripts/build_seo.py`를 실행한다.
 """
@@ -76,7 +77,36 @@ def update_post_meta(post):
     return url, modified.group(1) if modified else post["date"]
 
 
+# partials/의 공통 스니펫을 모든 페이지에 정적으로 넣는다.
+# (네이버 사이트 인증 봇 등은 JS를 실행하지 않으므로 JS로 주입하면 안 된다.)
+# 마커가 없는 페이지는 기존 GTM 블록을 마커 블록으로 교체한다.
+PARTIALS = [
+    ("head", "partials/head.html",
+     re.compile(r"<!-- Google Tag Manager -->\n.*?<!-- End Google Tag Manager -->\n", re.S)),
+    ("body-start", "partials/body-start.html",
+     re.compile(r"<!-- Google Tag Manager \(noscript\) -->\n.*?<!-- End Google Tag Manager \(noscript\) -->\n", re.S)),
+]
+
+
+def apply_partials(path):
+    text = path.read_text(encoding="utf-8")
+    for name, partial_path, legacy in PARTIALS:
+        snippet = (ROOT / partial_path).read_text(encoding="utf-8").rstrip("\n")
+        block = f"<!-- COMMON:{name} START (편집은 {partial_path}에서) -->\n{snippet}\n<!-- COMMON:{name} END -->\n"
+        marker = re.compile(rf"<!-- COMMON:{name} START.*?<!-- COMMON:{name} END -->\n", re.S)
+        text, count = marker.subn(lambda _: block, text, count=1)
+        if count == 0:
+            text, count = legacy.subn(lambda _: block, text, count=1)
+        if count == 0:
+            raise SystemExit(f"{path.relative_to(ROOT)}: COMMON:{name} 마커나 기존 GTM 블록을 찾지 못했습니다.")
+    path.write_text(text, encoding="utf-8")
+
+
 def main():
+    pages = [ROOT / "index.html", ROOT / "list.html", *sorted((ROOT / "posts").glob("*.html"))]
+    for page in pages:
+        apply_partials(page)
+
     posts = json.loads((ROOT / "posts.json").read_text(encoding="utf-8"))
     posts.sort(key=lambda p: p["date"], reverse=True)
 

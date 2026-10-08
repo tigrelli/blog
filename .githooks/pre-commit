@@ -1,9 +1,12 @@
 #!/bin/sh
-# 글(posts.json, posts/)이나 스크립트가 커밋에 포함되면 build_seo.py를 실행하고,
-# 갱신된 sitemap.xml·홈/목록 정적 카드·글 og 태그를 같은 커밋에 함께 넣는다.
+# 글(posts.json, posts/), 공통 스니펫(partials/), 스크립트가 커밋에 포함되면 build_seo.py를 실행하고,
+# 갱신된 sitemap.xml·홈/목록 정적 카드·글 og 태그·공통 스니펫을 같은 커밋에 함께 넣는다.
 # 설치: git config core.hooksPath .githooks
 
-if ! git diff --cached --name-only | grep -qE '^(posts\.json|posts/|scripts/build_seo\.py)'; then
+# 한글 파일명(템플릿.html)이 escape되지 않도록 한다.
+git() { command git -c core.quotepath=off "$@"; }
+
+if ! git diff --cached --name-only | grep -qE '^(posts\.json|posts/|partials/|scripts/build_seo\.py)'; then
   exit 0
 fi
 

@@ -3,5 +3,6 @@ Allow: /
 Disallow: /posts/%ED%85%9C%ED%94%8C%EB%A6%BF.html
 Disallow: /scripts/
 Disallow: /.githooks/
+Disallow: /partials/
 
 Sitemap: https://blog.tigrelli.com/sitemap.xml
