@@ -103,20 +103,6 @@ button:focus-visible {
   color: var(--ink);
 }
 
-.wordmark-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: var(--radius-sm);
-  background: var(--accent);
-  color: var(--surface);
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
-}
 
 .site-nav {
   display: flex;
@@ -1333,34 +1319,48 @@ body.blog-theme {
 }
 
 /* ── 블로그 헤더 보조 ─────────────────────────────── */
-.site-header-left {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.wordmark-text {
-  margin-left: -2px;
-}
-
-.blog-home-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-strong);
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  padding: 6px 14px;
-  text-decoration: none;
+body.blog-theme .site-header .wordmark {
+  gap: 10px;
+  min-width: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   white-space: nowrap;
-  transition: background 0.15s ease;
 }
 
-.blog-home-link:hover {
-  background: var(--accent-soft);
+.wordmark-icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
 }
+
+body.blog-theme .site-nav {
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+body.blog-theme .nav-link {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+body.blog-theme .nav-link-current {
+  font-weight: 600;
+}
+
+body.blog-theme .nav-link-current::after {
+  content: none;
+}
+
+.site-nav-sep {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+
 
 /* ── 블로그 히어로 / 카테고리 ─────────────────────── */
 .blog-top {
@@ -1605,9 +1605,19 @@ body.blog-theme {
 
 /* ── 반응형 ───────────────────────────────────────── */
 @media (max-width: 640px) {
-  .blog-home-link,
-  .wordmark-text {
-    display: none;
+  .site-header-inner {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  body.blog-theme .site-header .wordmark {
+    gap: 8px;
+    font-size: 1rem;
+  }
+
+  .wordmark-icon {
+    width: 28px;
+    height: 28px;
   }
 
   .post-grid {

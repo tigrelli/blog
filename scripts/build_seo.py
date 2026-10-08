@@ -4,7 +4,8 @@
 - sitemap.xml 생성
 - index.html(최신 글 4개) / list.html(전체 글)에 글 카드를 정적 HTML로 미리 렌더링
   (JS가 로드되면 같은 마크업으로 다시 그리므로 화면은 동일하다)
-- 각 글의 og:url / og:image 메타 태그를 posts.json 값에 맞춘다
+- 각 글의 og:url / og:image 메타 태그와 카테고리 표시를 posts.json 값에 맞춘다
+  (posts.json의 category가 categories.json에 없으면 중단한다)
 - partials/의 공통 스니펫(GTM, 네이버 사이트 인증 등)을 모든 페이지에 넣는다
 
 새 글을 posts.json에 추가한 뒤 저장소 루트에서 `python3 scripts/build_seo.py`를 실행한다.
@@ -71,6 +72,9 @@ def update_post_meta(post):
     image = BASE_URL + (post.get("thumbnail") or "/assets/images/blog-tigrelli.webp")
     text = set_meta(text, "og:url", url)
     text = set_meta(text, "og:image", image)
+    # 글 본문 상단의 카테고리 표시도 posts.json 값과 맞춘다.
+    text = re.sub(r'<span class="post-category">[^<]*</span>',
+                  lambda _: f'<span class="post-category">{esc(post["category"])}</span>', text, count=1)
     path.write_text(text, encoding="utf-8")
     # 템플릿 placeholder가 남아 있는 등 날짜 형식이 아니면 posts.json의 date를 쓴다.
     modified = re.search(r'"dateModified":\s*"(\d{4}-\d{2}-\d{2})"', text)
@@ -109,6 +113,11 @@ def main():
 
     posts = json.loads((ROOT / "posts.json").read_text(encoding="utf-8"))
     posts.sort(key=lambda p: p["date"], reverse=True)
+
+    categories = json.loads((ROOT / "categories.json").read_text(encoding="utf-8"))
+    invalid = [f'{p["slug"]}: "{p["category"]}"' for p in posts if p["category"] not in categories or p["category"] == "전체"]
+    if invalid:
+        raise SystemExit("categories.json에 없는 카테고리입니다.\n  " + "\n  ".join(invalid))
 
     entries = [(f"{BASE_URL}/", posts[0]["date"] if posts else None),
                (f"{BASE_URL}/list.html", posts[0]["date"] if posts else None)]

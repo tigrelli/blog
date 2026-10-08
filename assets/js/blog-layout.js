@@ -1,6 +1,6 @@
 const BLOG_NAV = [
-  { href: "/", label: "블로그 홈" },
   { href: "/list.html", label: "글 목록" },
+  { href: "https://tigrelli.com/about.html", label: "소개" },
 ];
 
 function isCurrentBlogPage(href) {
@@ -15,13 +15,13 @@ function renderBlogHeader() {
     const cls = current ? "nav-link nav-link-current" : "nav-link";
     const aria = current ? ' aria-current="page"' : "";
     return `<a href="${item.href}" class="${cls}"${aria}>${item.label}</a>`;
-  }).join("");
-  return `<header class="site-header"><div class="site-header-inner"><div class="site-header-left"><a href="/" class="wordmark" aria-label="정태희 블로그"><span class="wordmark-badge">TH</span><span class="wordmark-text">Blog</span></a><nav class="site-nav">${nav}</nav></div><a href="https://tigrelli.com/" class="blog-home-link">Portfolio ↗</a></div></header>`;
+  }).join('<span class="site-nav-sep" aria-hidden="true">·</span>');
+  return `<header class="site-header"><div class="site-header-inner"><a href="/" class="wordmark"><img class="wordmark-icon" src="/assets/images/tigrelli-icon.webp" alt="" width="32" height="32"><span class="wordmark-text">Tigrelli Blog</span></a><nav class="site-nav" aria-label="블로그 메뉴">${nav}</nav></div></header>`;
 }
 
 function renderBlogFooter() {
   const year = new Date().getFullYear();
-  return `<footer class="site-footer"><div class="site-footer-inner"><p class="footer-contact">tigrelli의 개인 블로그 &middot; <a href="https://tigrelli.com/">Portfolio ↗</a></p><p class="footer-copyright">&copy; ${year} tigrelli. All rights reserved.</p></div></footer>`;
+  return `<footer class="site-footer"><div class="site-footer-inner"><p class="footer-contact">Tigrelli의 개인 블로그 &middot; <a href="https://tigrelli.com/">Portfolio ↗</a></p><p class="footer-copyright">&copy; ${year} Tigrelli. All rights reserved.</p></div></footer>`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {

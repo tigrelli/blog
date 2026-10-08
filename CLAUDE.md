@@ -5,6 +5,7 @@
    - 이 공통 스니펫은 `partials/head.html`, `partials/body-start.html`에서만 수정한다. 커밋하면 hook이 모든 페이지에 반영한다(5번 참고). 네이버 인증 봇 등은 JS를 실행하지 않으므로 JS로 주입하는 방식으로 바꾸지 않는다.
 2. `posts.json`에 같은 slug로 메타데이터(title, date, category, tags, summary, thumbnail, readTime)를 추가한다.
    - `category`는 `categories.json`에 있는 값 중 하나를 그대로 사용한다.
+   - 글 본문의 카테고리 표시(`post-category`)는 커밋 시 posts.json 값으로 자동 맞춰지고, categories.json에 없는 값이면 커밋이 중단된다. 카테고리 이름을 바꿀 때는 categories.json과 posts.json만 수정하면 된다.
 3. canonical 링크, og:url, og:image, JSON-LD의 URL을 실제 slug에 맞게 채운다.
 4. 커버/썸네일 이미지가 아직 없으면 임시 이미지(`/assets/images/blog-tigrelli.webp` 등)로 자리만 잡고, 실제 이미지가 준비되면 교체한다.
 5. `scripts/build_seo.py`는 커밋 시 pre-commit hook(`.githooks/pre-commit`)이 자동 실행하므로 따로 실행하지 않아도 된다.
