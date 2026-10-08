@@ -16,7 +16,10 @@ function renderBlogHeader() {
     const aria = current ? ' aria-current="page"' : "";
     return `<a href="${item.href}" class="${cls}"${aria}>${item.label}</a>`;
   }).join('<span class="site-nav-sep" aria-hidden="true">·</span>');
-  return `<header class="site-header"><div class="site-header-inner"><a href="/" class="wordmark"><img class="wordmark-icon" src="/assets/images/tigrelli-icon.webp" alt="" width="32" height="32"><span class="wordmark-text">Tigrelli Blog</span></a><nav class="site-nav" aria-label="블로그 메뉴">${nav}</nav></div></header>`;
+  // 헤더 메뉴(글 목록 · 소개)는 임시로 숨김. 다시 노출하려면 아래 두 줄의 주석을 바꾼다.
+  // const navHtml = `<nav class="site-nav" aria-label="블로그 메뉴">${nav}</nav>`;
+  const navHtml = "";
+  return `<header class="site-header"><div class="site-header-inner"><a href="/" class="wordmark"><img class="wordmark-icon" src="/assets/images/tigrelli-icon.webp" alt="" width="32" height="32"><span class="wordmark-text">Tigrelli Blog</span></a>${navHtml}</div></header>`;
 }
 
 function renderBlogFooter() {
