@@ -71,7 +71,8 @@ def update_post_meta(post):
     text = set_meta(text, "og:url", url)
     text = set_meta(text, "og:image", image)
     path.write_text(text, encoding="utf-8")
-    modified = re.search(r'"dateModified":\s*"([^"]+)"', text)
+    # 템플릿 placeholder가 남아 있는 등 날짜 형식이 아니면 posts.json의 date를 쓴다.
+    modified = re.search(r'"dateModified":\s*"(\d{4}-\d{2}-\d{2})"', text)
     return url, modified.group(1) if modified else post["date"]
 
 
