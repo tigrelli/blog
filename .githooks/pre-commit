@@ -1,0 +1,29 @@
+#!/bin/sh
+# 글(posts.json, posts/)이나 스크립트가 커밋에 포함되면 build_seo.py를 실행하고,
+# 갱신된 sitemap.xml·홈/목록 정적 카드·글 og 태그를 같은 커밋에 함께 넣는다.
+# 설치: git config core.hooksPath .githooks
+
+if ! git diff --cached --name-only | grep -qE '^(posts\.json|posts/|scripts/build_seo\.py)'; then
+  exit 0
+fi
+
+# 스크립트 실행 전 이미 unstaged 상태였던 파일은 건드리지 않기 위해 기록해 둔다.
+before=$(git diff --name-only)
+
+python3 scripts/build_seo.py || {
+  echo "pre-commit: build_seo.py 실행 실패로 커밋을 중단합니다." >&2
+  exit 1
+}
+
+for f in $(git diff --name-only); do
+  case "$f" in
+    sitemap.xml|index.html|list.html|posts/*.html)
+      if ! printf '%s\n' "$before" | grep -qxF "$f" || git diff --cached --name-only | grep -qxF "$f"; then
+        git add -- "$f"
+      fi
+      ;;
+  esac
+done
+
+# sitemap.xml을 새로 만든 경우(untracked)도 포함한다.
+git add -- sitemap.xml
