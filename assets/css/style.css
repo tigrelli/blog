@@ -238,6 +238,8 @@ button:focus-visible {
   font-size: 2rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .about-quote {
