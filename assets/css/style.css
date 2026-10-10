@@ -758,6 +758,33 @@ a.plan-point-title.doc-link:hover {
   text-align: center;
 }
 
+/* 따라 그린 원작 이미지: 정사각형이라 폭을 줄이고, 설명을 강조색으로 구분한다. */
+.detail-gallery-item--original {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.detail-gallery-item--original figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.artwork-credit {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.artwork-source {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.artwork-source a {
+  color: inherit;
+}
+
 .detail-gallery-item a[data-lightbox] {
   display: block;
   cursor: zoom-in;

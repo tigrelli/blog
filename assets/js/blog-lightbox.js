@@ -10,7 +10,8 @@
   function captionOf(link) {
     const fig = link.closest("figure");
     const cap = fig && fig.querySelector("figcaption");
-    if (cap) return cap.textContent.trim();
+    // 설명이 여러 줄(span)로 나뉘어 있으면 " · "로 이어 붙인다.
+    if (cap) return [...cap.childNodes].map((n) => n.textContent.trim()).filter(Boolean).join(" · ");
     const thumb = link.querySelector("img");
     return thumb ? thumb.alt : "";
   }
