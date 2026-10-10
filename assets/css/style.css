@@ -758,6 +758,136 @@ a.plan-point-title.doc-link:hover {
   text-align: center;
 }
 
+.detail-gallery-item a[data-lightbox] {
+  display: block;
+  cursor: zoom-in;
+}
+
+/* ── 이미지 크게 보기 레이어 (assets/js/blog-lightbox.js) ─ */
+.lightbox-open,
+.lightbox-open body {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 56px 16px 24px;
+  background: rgba(20, 16, 12, 0.92);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-figure {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.lightbox-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100% - 40px);
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-caption {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 0.875rem;
+  color: #f2ece2;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.lightbox-counter {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(242, 236, 226, 0.6);
+}
+
+.lightbox-close,
+.lightbox-nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.lightbox-nav {
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-single .lightbox-nav {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .lightbox {
+    padding: 56px 8px 16px;
+  }
+
+  /* 모바일은 스와이프로 넘기고, 버튼은 이미지 위 양옆에 작게 띄운다. */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
+
 /* ── 케이스 스터디 보조 컴포넌트 (axis/IA/swatch/stat) ─ */
 .axis-grid {
   display: grid;
@@ -1484,6 +1614,26 @@ body.blog-theme .nav-link-current::after {
 
 .post-card-readtime {
   color: var(--ink-soft);
+}
+
+.post-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px dashed var(--ink-soft);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.post-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .post-card-title {

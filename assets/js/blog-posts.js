@@ -22,5 +22,8 @@ function renderPostCard(post) {
   const readTime = post.readTime
     ? `<span class="post-card-readtime">${escapeHtml(post.readTime)}</span>`
     : "";
-  return `<a class="post-card" href="/posts/${escapeHtml(post.slug)}.html" data-category="${escapeHtml(post.category)}">${thumb}<div class="post-card-body"><div class="post-card-meta"><span class="post-category">${escapeHtml(post.category)}</span>${readTime}</div><h3 class="post-card-title">${escapeHtml(post.title)}</h3><p class="post-card-excerpt">${escapeHtml(post.summary)}</p><span class="post-card-date">${escapeHtml(post.date)}</span></div></a>`;
+  const status = post.status
+    ? `<span class="post-status">${escapeHtml(post.status)}</span>`
+    : "";
+  return `<a class="post-card" href="/posts/${escapeHtml(post.slug)}.html" data-category="${escapeHtml(post.category)}">${thumb}<div class="post-card-body"><div class="post-card-meta"><span class="post-category">${escapeHtml(post.category)}</span>${status}${readTime}</div><h3 class="post-card-title">${escapeHtml(post.title)}</h3><p class="post-card-excerpt">${escapeHtml(post.summary)}</p><span class="post-card-date">${escapeHtml(post.date)}</span></div></a>`;
 }

@@ -33,10 +33,14 @@ def render_post_card(post):
         f'<span class="post-card-readtime">{esc(post["readTime"])}</span>'
         if post.get("readTime") else ""
     )
+    status = (
+        f'<span class="post-status">{esc(post["status"])}</span>'
+        if post.get("status") else ""
+    )
     return (
         f'<a class="post-card" href="/posts/{esc(post["slug"])}.html" data-category="{esc(post["category"])}">'
         f'{thumb}<div class="post-card-body"><div class="post-card-meta">'
-        f'<span class="post-category">{esc(post["category"])}</span>{read_time}</div>'
+        f'<span class="post-category">{esc(post["category"])}</span>{status}{read_time}</div>'
         f'<h3 class="post-card-title">{esc(post["title"])}</h3>'
         f'<p class="post-card-excerpt">{esc(post["summary"])}</p>'
         f'<span class="post-card-date">{esc(post["date"])}</span></div></a>'
@@ -75,6 +79,10 @@ def update_post_meta(post):
     # 글 본문 상단의 카테고리 표시도 posts.json 값과 맞춘다.
     text = re.sub(r'<span class="post-category">[^<]*</span>',
                   lambda _: f'<span class="post-category">{esc(post["category"])}</span>', text, count=1)
+    # 진행 상태(posts.json의 status)도 카테고리 바로 뒤에 맞춘다. status를 지우면 표시도 사라진다.
+    status = f'<span class="post-status">{esc(post["status"])}</span>' if post.get("status") else ""
+    text = re.sub(r'(<span class="post-category">[^<]*</span>)(?:\s*<span class="post-status">[^<]*</span>)?',
+                  lambda m: m.group(1) + status, text, count=1)
     path.write_text(text, encoding="utf-8")
     # 템플릿 placeholder가 남아 있는 등 날짜 형식이 아니면 posts.json의 date를 쓴다.
     modified = re.search(r'"dateModified":\s*"(\d{4}-\d{2}-\d{2})"', text)
