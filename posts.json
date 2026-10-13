@@ -1,5 +1,15 @@
 [
   {
+    "slug": "2026-10-13-ai-from-answers-to-work",
+    "title": "AI는 답하는 기술에서 일하는 기술로 진화하고 있다",
+    "date": "2026-10-13",
+    "category": "생각",
+    "tags": ["AI에이전트", "에이전틱AI", "AgenticAI", "AI평가", "AI도입", "PM"],
+    "summary": "가장 똑똑한 AI가 가장 일을 잘하는 AI일까? 에이전틱 AI 시대, 모델의 성능에 더해 실행력과 비용, 신뢰성까지 함께 따져야 하는 이유를 공개 연구와 발표 자료로 살펴본다.",
+    "thumbnail": "/assets/images/2026-10-13-ai-from-answers-to-work-cover.webp",
+    "readTime": "10분"
+  },
+  {
     "slug": "2026-10-10-klimt-flower-garden",
     "title": "화실 일기: 클림트 〈꽃의 정원〉을 그린 지 벌써 네 달",
     "date": "2026-10-10",
