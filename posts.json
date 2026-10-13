@@ -1,12 +1,32 @@
 [
   {
+    "slug": "2026-10-13-webtoon-ep01",
+    "title": "티그와 친구들 1화: 우리의 작은 실험",
+    "date": "2026-10-13",
+    "category": "웹툰",
+    "tags": ["웹툰", "티그와친구들", "티그", "루시", "모카", "4컷만화"],
+    "summary": "Try의 티그, Action의 루시, Review의 모카. 세 친구가 처음 인사를 나누고 '우리의 작은 실험'을 시작한다. 그런데 범위는 정한 거지?",
+    "thumbnail": "/assets/images/2026-10-13-webtoon-ep01-cover.webp",
+    "readTime": "1분"
+  },
+  {
+    "slug": "2026-10-13-meet-tig-and-friends",
+    "title": "티그와 친구들을 소개합니다",
+    "date": "2026-10-13",
+    "category": "웹툰",
+    "tags": ["웹툰", "캐릭터소개", "티그", "루시", "모카", "4컷만화"],
+    "summary": "일과 기술을 둘러싼 작은 소동을 그리는 Tigrelli Blog 웹툰. 호기심 많은 기획자 티그, 자신감 넘치는 AI 어시스턴트 루시, 현실적인 동료 모카를 소개합니다.",
+    "thumbnail": "/assets/images/2026-10-13-meet-tig-and-friends-cover.webp",
+    "readTime": "4분"
+  },
+  {
     "slug": "2026-10-13-ai-from-answers-to-work",
     "title": "AI는 답하는 기술에서 일하는 기술로 진화하고 있다",
     "date": "2026-10-13",
     "category": "생각",
     "tags": ["AI에이전트", "에이전틱AI", "AgenticAI", "AI평가", "AI도입", "PM"],
     "summary": "가장 똑똑한 AI가 가장 일을 잘하는 AI일까? 에이전틱 AI 시대, 모델의 성능에 더해 실행력과 비용, 신뢰성까지 함께 따져야 하는 이유를 공개 연구와 발표 자료로 살펴본다.",
-    "thumbnail": "/assets/images/2026-10-13-ai-from-answers-to-work-cover.webp",
+    "thumbnail": "/assets/images/2026-10-13-ai-from-answers-to-work-cover-v2.webp",
     "readTime": "10분"
   },
   {
